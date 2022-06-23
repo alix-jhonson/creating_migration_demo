@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220623065934) do
+ActiveRecord::Schema.define(version: 20220623073437) do
 
   create_table "categorization", id: false, force: :cascade do |t|
     t.integer "product_id", null: false
@@ -40,9 +40,10 @@ ActiveRecord::Schema.define(version: 20220623065934) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "f_name"
-    t.string "l_name"
-    t.string "subject_name"
+    t.string "course_objectives"
+    t.string "full_name"
   end
+
+  add_index "students", ["full_name"], name: "index_students_on_full_name"
 
 end
