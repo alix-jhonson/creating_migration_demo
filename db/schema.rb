@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220623073437) do
+ActiveRecord::Schema.define(version: 20220623110821) do
 
   create_table "categorization", id: false, force: :cascade do |t|
     t.integer "product_id", null: false
@@ -39,11 +39,31 @@ ActiveRecord::Schema.define(version: 20220623073437) do
     t.string "name"
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "users_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "relationships", ["role_id"], name: "index_relationships_on_role_id"
+  add_index "relationships", ["users_id"], name: "index_relationships_on_users_id"
+
+  create_table "roles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "course_objectives"
     t.string "full_name"
   end
 
   add_index "students", ["full_name"], name: "index_students_on_full_name"
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
