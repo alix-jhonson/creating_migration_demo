@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220622055837) do
+ActiveRecord::Schema.define(version: 20220623065934) do
 
   create_table "categorization", id: false, force: :cascade do |t|
     t.integer "product_id", null: false
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 20220622055837) do
   end
 
   create_table "products", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "f_name"
+    t.string "l_name"
+    t.string "subject_name"
   end
 
 end
