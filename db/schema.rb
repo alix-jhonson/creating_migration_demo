@@ -13,6 +13,28 @@
 
 ActiveRecord::Schema.define(version: 20220622055837) do
 
+  create_table "categorization", id: false, force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "item_id",    null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "user_id"
+    t.decimal  "price",         precision: 5, scale: 2
+    t.integer  "supplier_id"
+    t.string   "supplier_type"
+  end
+
+  add_index "items", ["supplier_type", "supplier_id"], name: "index_items_on_supplier_type_and_supplier_id"
+  add_index "items", ["user_id"], name: "index_items_on_user_id"
+
+  create_table "items_products", id: false, force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.integer "item_id",    null: false
+  end
+
   create_table "products", force: :cascade do |t|
   end
 
